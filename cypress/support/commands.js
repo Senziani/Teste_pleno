@@ -29,19 +29,22 @@ const pass = Cypress.env("USER_PASS");
 
 import data from "../support/data.cy.js";
 
-Cypress.Commands.add("login", (email, password) => {
-  cy.visit(url);
-  cy.url().should("include", "https://qualeagiria.com.br/");
-  cy.get(data.BtnIserir).click({ foce: true });
+Cypress.Commands.add("login", (email,password) => {
+  cy.session("login", () => {
+       cy.visit(url);
+    cy.get(data.BtnIserir).click({ force: true });
 
-  // forçar para digitar pois o imput esta imcoberto por um elemento
-  cy.get(email)
-    .scrollIntoView()
-    .should("be.visible")
-    .type(user, { force: true });
-  cy.get(password)
-    .scrollIntoView()
-    .should("be.visible")
-    .type(pass, { force: true });
-  cy.get(data.Btnlogin).click({ force: true });
+    // forçar para digitar pois o imput esta imcoberto por um elemento
+    cy.get(email)
+      .scrollIntoView()
+      .should("be.visible")
+      .type(user, { force: true });
+    cy.get(password)
+      .scrollIntoView()
+      .should("be.visible")
+      .type(pass, { force: true });
+    cy.get(data.Btnlogin).click({ force: true });
+
+    cy.get(".user_avatar").should("be.visible");
+  });
 });
