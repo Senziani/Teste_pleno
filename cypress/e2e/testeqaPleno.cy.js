@@ -26,6 +26,5 @@ describe("Teste QA Pleno", () => {
     cy.get(data.BtnAddGirias).click({ force: true });
     cy.contains("h1", "Adicionar Gíria").should("be.visible");
 
-    //cy.visit(url + "/novas");
   });
 });

@@ -31,7 +31,7 @@ import data from "../support/data.cy.js";
 
 Cypress.Commands.add("login", (email,password) => {
   cy.session("login", () => {
-       cy.visit(url);
+    cy.visit(url);
     cy.get(data.BtnIserir).click({ force: true });
 
     // forçar para digitar pois o imput esta imcoberto por um elemento
